@@ -71,3 +71,5 @@ router.route('/get/:id').get(async(req, res) => {
         res.status(500).send({status : "Error with fetching user"});
     })
 })
+
+export default router;
