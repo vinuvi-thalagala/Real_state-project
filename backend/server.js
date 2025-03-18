@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 
+import userRouter from './routes/user.routes.js';
+
 dotenv.config();
 
 const app = express();
@@ -19,6 +21,9 @@ const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("Mongodb connection is successfull");
 });
+
+
+app.use('/user', userRouter);
 
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`);
