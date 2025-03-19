@@ -2,7 +2,7 @@ import { Router } from "express";
 import User from "../models/user.model.js";
 const router = Router();
 
-router.route('/').get(async(req, res) => {
+router.route('/create').post(async(req, res) => {
 
     const {username, email, password} = req.body;
 
@@ -20,7 +20,7 @@ router.route('/').get(async(req, res) => {
 });
 
 
-router.route('/get').post((async(req, res) => {
+router.route('/').get((async(req, res) => {
     await User.find().then((users) => {
         res.json(users)
     }).catch((err) => {
@@ -40,7 +40,7 @@ router.route('/update/:id').put(async(req, res) => {
     });
 
     const update = await User.findByIdAndUpdate(userId, updateUser).then(() => {
-        res.status(200).send({status : "User updated"}, updateUser);
+        res.status(200).send({status : "User updated"});
     }).catch((err) => {
         console.log(err);
         res.status(500).send({status : "Error with updating data"});
@@ -64,8 +64,8 @@ router.route('/get/:id').get(async(req, res) => {
 
     let userId = req.params.id;
 
-    const fetchedUser = await User.findById(userId).tehn((user) => {
-        res.status(200).send({status : 'User fetched'}, fetchedUser);
+    const fetchedUser = await User.findById(userId).then((user) => {
+        res.status(200).send({status : 'User fetched', user});
     }).catch((err) => {
         console.log(err);
         res.status(500).send({status : "Error with fetching user"});
