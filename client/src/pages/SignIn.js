@@ -62,7 +62,7 @@ function sendData(e){
                 required
             />
 
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+            <button onClick={sendData} type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
                 Submit
             </button>
         </form>
