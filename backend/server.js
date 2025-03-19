@@ -2,13 +2,16 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import userRouter from './routes/user.routes.js';
 
 dotenv.config();
 
 const app = express();
+
 app.use(bodyParser.json());
+app.use(cors());
 
 const PORT = process.env.PORT || 8070;
 
